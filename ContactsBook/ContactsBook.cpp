@@ -5,8 +5,13 @@
 #include "ContactsBook.h"
 
 #define MAX_LOADSTRING 100
-
 // Глобальные переменные:
+
+//*Дескриптори елементів управління:
+HWND hList1, hList2;
+HWND hEdit1, hEdit2, hEdit3, hEdit4;
+HWND hButton1, hButton2, hButton3, hButton4;
+
 HINSTANCE hInst;                                // текущий экземпляр
 WCHAR szTitle[MAX_LOADSTRING];                  // Текст строки заголовка
 WCHAR szWindowClass[MAX_LOADSTRING];            // имя класса главного окна
@@ -153,6 +158,28 @@ INT_PTR CALLBACK DlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
     case WM_INITDIALOG:
+        {
+        // 1 - Прив'язка дескрипторів
+            hList1 = GetDlgItem(hDlg, IDC_LIST1);
+            hList1 = GetDlgItem(hDlg, IDC_LIST2);
+        // - >
+            hEdit1 = GetDlgItem(hDlg, IDC_EDIT1);
+            hEdit1 = GetDlgItem(hDlg, IDC_EDIT2);
+            hEdit1 = GetDlgItem(hDlg, IDC_EDIT3);
+            hEdit1 = GetDlgItem(hDlg, IDC_EDIT4);
+        // - >
+            hButton1 = GetDlgItem(hDlg, IDC_BUTTON1);
+            hButton2 = GetDlgItem(hDlg, IDC_BUTTON2);
+            hButton3 = GetDlgItem(hDlg, IDC_BUTTON3);
+            hButton4 = GetDlgItem(hDlg, IDC_BUTTON4);
+
+        // 2 - Заповнення списку груп контактів:
+            SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(L"Робочі контакти"));
+            SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(L"Сімейні контакти"));
+            SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(L"Контакти сусідів "));
+            SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(L"Контакти знайомих"));
+            SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(L"Особисті контакти"));
+            }
         return (INT_PTR)TRUE;
 
     case WM_COMMAND:
